@@ -1,0 +1,30 @@
+def y_testFunction(df,model):
+    y_test = df.reindex(np.random.permutation(df.index))
+    pred = model.predict(y_test.values)
+    y_test = pd.Series(pred)
+    # print("y_test predition:",y_test)
+    # print("y_test preditin datatype",type(y_test))
+    return y_test
+
+def model_pred_manual(model,x_axis,predict_data):
+    model_pr = jsonpickle.decode(model)
+    print("Model:",model_pr)
+    x_test = pd.DataFrame.from_records(predict_data)
+    # print(x_test)
+    x_test = x_test[x_axis]
+    x_test.dropna(how='all',inplace=True)
+    # y_test = x_test.reindex(index=x_test.index[::-1])
+    y_test = y_testFunction(x_test,model_pr)
+
+    pred = model_pr.predict(x_test.values)
+    print("Main prediction:",pred)
+    df_coeflen = len(x_test.columns)
+ 
+   
+    r_square = r2_score(y_test,pred)
+    print("r_Square:",r_square)
+    mse = mean_squared_error(y_test, pred)
+    print(mse)
+    adj = 1 - float(len(y_test)-1)/(len(y_test)-df_coeflen-1)*(1 - metrics.r2_score(y_test,pred))
+    
+    return pred,x_test,r_square,adj,mse
