@@ -1,14 +1,19 @@
-# Prediction-models-for-Analytic-Tool-
-Analytic tool is python based application which is made up of API with flask for creating prediction models like Linear regression,Log regression.
+# Prediction Models for Analysis
 
-#Modal.py containes Three models for prediction
+This application is python based application which having Flask API for python.
+This Flask API is used to communicate to the database from frontend.
+Basically this application is the backend to the any frontend service.
 
-1.Linear Regression
+# Modal.py
 
-2.Log Regression
+This file contains these 2 models:
+  1.Linear Regression
+  2.Log Regression
 
-3.Xg boost
-
-#Server.py
+# Server.py
 
 This file contains the flask API for request and response.
+
+# data.json
+
+This file contains data for prediction based on that we will calculate 'y_pred'.
